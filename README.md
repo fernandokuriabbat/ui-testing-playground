@@ -44,7 +44,7 @@ This project demonstrates practical UI automation skills using Playwright and Ty
 
 ## 📊 Status & Progress
 
-- ✅ **20 out of 23 scenarios completed** (87% complete)
+- ✅ **23 out of 23 scenarios completed** (100% complete)
 - Playwright + TypeScript with Page Object Model pattern
 - CI/CD: GitHub Actions workflow with automated test execution
 - Cross-browser testing: Chromium, Firefox, WebKit (Safari)
@@ -74,10 +74,10 @@ This project demonstrates practical UI automation skills using Playwright and Ty
 | 18 | ✅ Shadow DOM | Complete |
 | 19 | ✅ Alerts | Complete |
 | 20 | ✅ File Upload | Complete |
-| 21 | ⏳ Animated Button | Pending |
-| 22 | ⏳ Disabled Input | Pending |
-| 23 | ⏳ Auto Wait | Pending |
-| | **Total** | **20/23 (87%)** |
+| 21 | ✅ Animated Button | Complete |
+| 22 | ✅ Disabled Input | Complete |
+| 23 | ✅ Auto Wait | Complete |
+| | **Total** | **23/23 (100%)** |
 
 ---
 
@@ -212,7 +212,7 @@ The GitHub Actions workflow runs on every push and pull request, executing the f
 
 ## 📈 Test Results
 
-- **Total Tests**: 20 scenarios
+- **Total Tests**: 23 scenarios
 - **Browsers Tested**: Chromium, Firefox, WebKit
 - **CI Status**: [![CI](https://github.com/fernandokuriabbat/uiTestingPlayground/actions/workflows/playwright.yml/badge.svg)](https://github.com/fernandokuriabbat/uiTestingPlayground/actions/workflows/playwright.yml)
 - **Test Execution**: Automated via GitHub Actions on every push/PR
@@ -232,9 +232,9 @@ This repository serves as a **portfolio demonstration** of my Playwright automat
 
 **Known Limitations:**
 - The "Click" scenario is intentionally skipped on WebKit due to anti-automation design in the demo application (documented in test code)
-- 3 remaining scenarios (Animated Button, Disabled Input, Auto Wait) are planned for completion
+- All other UITestingPlayground scenarios are fully automated and validated across supported browsers
 
-**Next Steps**: Completing the remaining 3 scenarios to achieve 100% coverage of the UI Testing Playground.
+**Next Steps**: Continue monitoring CI results, refreshing dependencies, and expanding test data/edge cases as the site evolves.
 
 ---
 
