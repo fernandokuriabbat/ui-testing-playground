@@ -1,3 +1,4 @@
+import { Locator, expect } from '@playwright/test';
 import * as fs from 'fs';
 import * as path from 'path';
 
@@ -47,4 +48,31 @@ export function cleanupTestFiles(): void {
     }
 }
 
+export class WebHelper {
+  /**
+   * Wait until a locator's text equals the expected value.
+   */
+  async waitForText(
+    locator: Locator,
+    expectedText: string,
+    timeout = 15000 
+  ): Promise<void> {
+    await expect(locator).toHaveText(expectedText, { timeout });
+  }
+
+  async waitForTextToChange(
+    locator: Locator,
+    initialText: string,
+    timeout = 15000
+  ): Promise<void> {
+    await expect(locator).not.toHaveText(initialText, { timeout });
+  }
+
+  async waitForEnabled(locator: Locator, timeout = 15000): Promise<void> {
+    await expect(locator).toBeEnabled({ timeout });
+  }
+
+}
+
+  
 

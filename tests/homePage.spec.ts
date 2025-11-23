@@ -1,6 +1,7 @@
-import { test } from "@playwright/test";
+import { test, expect } from "@playwright/test";
 import { PageManager } from "../page-objects/pageManager";
 import { createTestFile, cleanupTestFiles } from "../utils/fileHelpers";
+import { AutoWaitPage } from "../page-objects/autoWaitPage";
 
 test.beforeEach(async({page}) => {
     await page.goto('http://www.uitestingplayground.com/')
@@ -160,7 +161,70 @@ test('navigate to file upload page, upload file via drag and drop and verify', a
     await pm.onFileUploadPage().uploadFileAndVerify(testFilePath, 'dragdrop');
 });
 
+test('navigate to animated button page, start animation wait for completion and click on moving target button', async ({page}) => {
+    const pm = new PageManager(page);
+    await pm.onHomePage().navigateToAnimatedButtonPage();
+    await page.waitForURL(/\/animation$/);
+    await pm.onAnimatedButtonPage().startAnimationWaitForCompletionAndClickMovingTarget();
+
+});
+
+test('navigate to disabled input page, click On button, wait for field to be enabled and input text', async ({page}) => {
+    const pm = new PageManager(page);
+    await pm.onHomePage().navigateToDisabledInputPage();
+    await page.waitForURL(/\/disabledinput$/);
+    await pm.onDisabledInputPage().clickOnButtonWaitForFieldToBeEnabledAndInputText('test123');
+})
+
+test('navigate to auto wait page, try button element with different properties and X delay', async ({page}) => {
+    const pm = new PageManager(page);
+    await pm.onHomePage().navigateToAutoWaitPage();
+    await page.waitForURL(/\/autowait$/);
+
+    const autoWaitPage = pm.onAutoWaitPage();
+
+    await autoWaitPage.configurePropertyAndDelay('button', 'visible', 5 );
+
+    await autoWaitPage.clickTargetButton();
+    await expect(autoWaitPage.statusLabel).toHaveText('Target clicked.');
+})
+
+test('navigate to auto wait page, try input element with different properties and X delay', async ({page}) => {
+    const pm = new PageManager(page);
+    await pm.onHomePage().navigateToAutoWaitPage();
+    await page.waitForURL(/\/autowait$/);
+
+    const autoWaitPage = pm.onAutoWaitPage();
+
+    await autoWaitPage.configurePropertyAndDelay('input', 'editable', 5);
+    await autoWaitPage.inputTextOnField('Test123');
+})
+
+test('navigate to auto wait page, try select element with different properties and X delay', async ({page}) => {
+    const pm = new PageManager(page);
+    await pm.onHomePage().navigateToAutoWaitPage();
+    await page.waitForURL(/\/autowait$/);
+
+    const autoWaitPage = pm.onAutoWaitPage();
+
+    await autoWaitPage.configurePropertyAndDelay('select', 'enabled', 5);
+    await autoWaitPage.selectItemfromMenu('Item 3');
+})
+
+test('navigate to auto wait page, try label element with different properties and X delay', async ({page}) => {
+    const pm = new PageManager(page);
+    await pm.onHomePage().navigateToAutoWaitPage();
+    await page.waitForURL(/\/autowait$/);
+
+    const autoWaitPage = pm.onAutoWaitPage();
+
+    await autoWaitPage.configurePropertyAndDelay('label', 'visible', 5);
+    await expect(autoWaitPage.labelText).toHaveText('This is a Label');
+})
+
+
+
 
 test.afterAll(async () => {
     cleanupTestFiles();
-});
+})

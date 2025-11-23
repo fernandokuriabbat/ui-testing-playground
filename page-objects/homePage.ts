@@ -88,6 +88,18 @@ export class HomePage extends BasePage{
         await this.selectPageTitleLink('File Upload');
     }
 
+    async navigateToAnimatedButtonPage(){
+        await this.selectPageTitleLink('Animated Button');
+    }
+
+    async navigateToDisabledInputPage(){
+        await this.selectPageTitleLink('Disabled Input');
+    }
+
+    async navigateToAutoWaitPage(){
+        await this.selectPageTitleLink('Auto Wait');
+    }
+
     private async selectPageTitleLink(name: string){
         await this.page.getByRole('link', {name}).click();
     }

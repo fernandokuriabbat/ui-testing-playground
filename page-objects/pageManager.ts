@@ -20,6 +20,9 @@ import { OverlappedElementPage } from "./overlappedElementPage";
 import { ShadowDomPage } from "./shadowDomPage";
 import { AlertsPage } from "./alertsPage";
 import { FileUploadPage } from "./fileUploadPage";
+import { AnimatedButtonPage } from "./animatedButtonPage";
+import { DisabledInputPage } from "./disabledInputPage";
+import { AutoWaitPage } from "./autoWaitPage";
 
 
 export class PageManager{
@@ -45,6 +48,9 @@ export class PageManager{
     private readonly shadowDomPage: ShadowDomPage;
     private readonly alertsPage: AlertsPage;
     private readonly fileUploadPage: FileUploadPage;
+    private readonly animatedButtonPage: AnimatedButtonPage;
+    private readonly disabledInputPage: DisabledInputPage;
+    private readonly autoWaitPage: AutoWaitPage; 
 
 
     constructor(page:Page){
@@ -70,6 +76,9 @@ export class PageManager{
         this.shadowDomPage = new ShadowDomPage(this.page); 
         this.alertsPage = new AlertsPage(this.page);
         this.fileUploadPage = new FileUploadPage(this.page); 
+        this.animatedButtonPage = new AnimatedButtonPage(this.page);
+        this.disabledInputPage = new DisabledInputPage(this.page); 
+        this.autoWaitPage = new AutoWaitPage(this.page);
     }
 
     onDynamicIdPage(){
@@ -154,6 +163,18 @@ export class PageManager{
 
     onFileUploadPage(){
         return this.fileUploadPage;
+    }
+
+    onAnimatedButtonPage(){
+        return this.animatedButtonPage;
+    }
+
+    onDisabledInputPage(){
+        return this.disabledInputPage;
+    }
+
+    onAutoWaitPage(){
+        return this.autoWaitPage;
     }
 
 }
